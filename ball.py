@@ -9,6 +9,8 @@ class Ball(Turtle):
         self.goto(0,0)
         self.shapesize(0.5,0.5)
         self.setheading(DOWN)
+        self.brick_class=[]
+        self.points=0
 
     def bounce_paddle(self, paddle):
         if self.distance(paddle.paddle_list[0]) <= 25:
@@ -22,23 +24,36 @@ class Ball(Turtle):
         elif self.distance(paddle.paddle_list[4]) <= 25:
             self.setheading(45)
 
-    def bounce_brick(self,brick_class):
-        for brick in brick_class.bricks_list:
+    def bounce_brick(self):
+
+        for brick in self.brick_class.bricks_list:
             if self.distance(brick) <=25:
                 self.setheading(-self.heading())
-                # if self.heading() in range(-20,20):
-                #     self.forward(5)
-                # else: self.forward(15)
-                brick_class.bricks_list.remove(brick)
+                if self.heading() in range(-20,20):
+                     self.forward(5)
+                else: self.forward(15)
+                self.brick_class.bricks_list.remove(brick)
                 brick.hideturtle()
+                if brick.color=="yellow":
+                    self.points+=1
+                elif brick.color == "green":
+                    self.points+=3
+                elif brick.color=="orange":
+                    self.points+=5
+                elif brick.color == "red":
+                    self.points += 10
 
     def bounce_wall(self):
         #This version calculates exact angle but lags and I created simpler version
       if self.xcor()>280 or self.xcor()<-280:
         if self.heading()<=180:
             self.setheading(180-self.heading())
-        if self.heading()>180:
+        elif self.heading()>180:
             self.setheading((360-(self.heading()-180)))
+        self.forward(10)
+    def bounce_topwall(self):
+        self.setheading(-self.heading())
+
 
 
 
