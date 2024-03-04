@@ -14,11 +14,15 @@ class Scoreboard(Turtle):
         self.clear()
         self.write(f"Player score: {self.score}     {'❤'*self.lives}", move=False, font=('Arial', 12, 'normal'))
     def gameover(self):
+        self.clear()
         self.goto(0,0)
         self.write(f"GAME OVER", align="center", font=('Arial', 12, 'normal'))
-
+    def win(self):
+        self.clear()
+        self.goto(0,0)
+        self.write(f"YOU WIN", align="center", font=('Arial', 12, 'normal'))
 
     def update_score(self,score):
-        self.score+=score
+        self.score=score
     def lose_life(self):
         self.lives -= 1
