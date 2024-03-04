@@ -1,0 +1,1 @@
+I created game in Turtle graphics module. It is remake of 80's Atari Breakout game. Bricks mechanics could be changed due to turtle object unperfection (distance between 2 turtle objects are distance to their middles, not Turtle border.) Regards MD
